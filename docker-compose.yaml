@@ -1,0 +1,11 @@
+services:
+  webserver:
+    image: nginx
+    container_name: nginx-tailscale
+    ports:
+      - 443:443
+    volumes:
+      - ./certificates:/etc/nginx/ssl
+      - ./templates:/etc/nginx/templates
+    environment:
+      - TAILSCALE_HOSTNAME

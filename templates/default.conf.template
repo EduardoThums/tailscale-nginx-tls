@@ -1,0 +1,18 @@
+server {
+    listen              443 ssl;
+    server_name         $TAILSCALE_HOSTNAME;
+    ssl_certificate     ssl/$TAILSCALE_HOSTNAME.crt;
+    ssl_certificate_key ssl/$TAILSCALE_HOSTNAME.key;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
